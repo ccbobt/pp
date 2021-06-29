@@ -14,9 +14,9 @@ class BitpayX extends AbstractPayment
         $payment = $this->creatNewPayment(Auth::id(), $request->input('id'), $request->input('amount'));
         $data = [
             'merchant_order_id'  => $payment->trade_no,
-            'price_amount'       => (double)$payment->amount,
+            'price_amount'       => (float) $payment->amount,
             'price_currency'     => 'CNY',
-            'title'              => '支付单号：' . $payment->trade_no,
+            'title'              => '支付单号：'.$payment->trade_no,
             'description'        => sysConfig('subject_name') ?: sysConfig('website_name'),
             'callback_url'       => route('payment.notify', ['method' => 'bitpayx']),
             'success_url'        => route('invoice'),
@@ -35,9 +35,9 @@ class BitpayX extends AbstractPayment
 
             return Response::json(['status' => 'success', 'url' => $result['payment_url'], 'message' => '创建订单成功!']);
         }
-        Log::warning('创建订单错误：' . var_export($result, true));
+        Log::warning('创建订单错误：'.var_export($result, true));
 
-        return Response::json(['status' => 'fail', 'message' => '创建订单失败!' . $result['error']]);
+        return Response::json(['status' => 'fail', 'message' => '创建订单失败!'.$result['error']]);
     }
 
     private function prepareSignId($tradeNo): string
@@ -48,18 +48,19 @@ class BitpayX extends AbstractPayment
             'type' => 'FIAT',
         ];
         ksort($data);
+
         return http_build_query($data);
     }
 
     private function sign($data)
     {
-        return strtolower(md5(md5($data) . sysConfig('bitpay_secret')));
+        return strtolower(md5(md5($data).sysConfig('bitpay_secret')));
     }
 
     private function sendRequest($data, $type = 'createOrder')
     {
         $bitpayGatewayUri = 'https://api.mugglepay.com/v1/';
-        $headers = array('content-type: application/json', 'token: ' . sysConfig('bitpay_secret'));
+        $headers = ['content-type: application/json', 'token: '.sysConfig('bitpay_secret')];
         $curl = curl_init();
         if ($type === 'createOrder') {
             $bitpayGatewayUri .= 'orders';
@@ -68,7 +69,7 @@ class BitpayX extends AbstractPayment
             $data_string = json_encode($data);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
         } elseif ($type === 'query') {
-            $bitpayGatewayUri .= 'orders/merchant_order_id/status?id=' . $data['merchant_order_id'];
+            $bitpayGatewayUri .= 'orders/merchant_order_id/status?id='.$data['merchant_order_id'];
             curl_setopt($curl, CURLOPT_URL, $bitpayGatewayUri);
             curl_setopt($curl, CURLOPT_HTTPGET, 1);
         }
@@ -85,6 +86,7 @@ class BitpayX extends AbstractPayment
     private function verify_bit($data, $signature)
     {
         $mySign = $this->sign($data);
+
         return $mySign === $signature;
     }
 
