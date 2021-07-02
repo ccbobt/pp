@@ -30,6 +30,9 @@
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" data-toggle="tab" href="#label" aria-controls="label" role="tab">标签</a>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-toggle="tab" href="#category" aria-controls="category" role="tab">商品分类</a>
+                        </li>
                     </ul>
                     <div class="tab-content py-15">
                         <div class="tab-pane active" id="method" role="tabpanel">
@@ -168,6 +171,40 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="tab-pane" id="category" role="tabpanel">
+                            <button class="btn btn-primary float-right mb-10" data-toggle="modal" data-target="#add_category_modal">
+                                新增<i class="icon wb-plus"></i>
+                            </button>
+                            <table class="text-md-center" data-toggle="table" data-height="700" data-virtual-scroll="true" data-mobile-responsive="true">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th> 名称</th>
+                                    <th> 排序</th>
+                                    <th> {{trans('common.action')}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($categories as $category)
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" name="name" id="category_name_{{$category->id}}" value="{{$category->name}}"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="sort" id="level_sort_{{$category->id}}" value="{{$category->sort}}"/>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary" onclick="updateCategory('{{$category->id}}')">
+                                                <i class="icon wb-edit" aria-hidden="true"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="delLevel('{{$category->id}}','{{$category->name}}')">
+                                                <i class="icon wb-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="tab-pane" id="country" role="tabpanel">
                             <button class="btn btn-primary float-right mb-10" data-toggle="modal" data-target="#add_country_modal">
                                 新增<i class="icon wb-plus"></i>
@@ -283,6 +320,34 @@
     </div>
 
     <div class="modal fade" id="add_level_modal" aria-hidden="true" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-simple modal-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">新增等级</h4>
+                </div>
+                <form action="#" method="post" class="modal-body">
+                    <div class="alert alert-danger" style="display: none;" id="level_msg"></div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="text" class="form-control" name="level" id="add_level" placeholder="等级">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input type="text" class="form-control" name="level_name" id="add_level_name" placeholder="等级名称">
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-danger">关 闭</button>
+                    <button class="btn btn-primary" onclick="addLevel()">提 交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="add_category_modal" aria-hidden="true" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-simple modal-center">
             <div class="modal-content">
                 <div class="modal-header">

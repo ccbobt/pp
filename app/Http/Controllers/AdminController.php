@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\GoodsCategory;
 use App\Models\Invite;
 use App\Models\Label;
 use App\Models\Level;
@@ -121,6 +122,7 @@ class AdminController extends Controller
             'obfsList' => SsConfig::type(3)->get(),
             'countries' => Country::all(),
             'levels' => Level::all(),
+            'categories' => GoodsCategory::all(),
             'labels' => Label::with('nodes')->get(),
         ]);
     }
