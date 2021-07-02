@@ -45,4 +45,9 @@ class Goods extends Model
     {
         return flowAutoShow($this->attributes['traffic'] * MB);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(GoodsCategory::class);
+    }
 }

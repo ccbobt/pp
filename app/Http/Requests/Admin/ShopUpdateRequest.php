@@ -12,6 +12,7 @@ class ShopUpdateRequest extends FormRequest
             'name' => 'required|string',
             'price' => 'required|numeric|min:0',
             'level' => 'required|numeric|exists:level,level',
+            'category_id' => 'required|numeric|exists:goods_category,id',
             'renew' => 'required_unless:type,2|numeric|min:0|nullable',
             'period' => 'required_unless:type,2|numeric|min:0|nullable',
             'invite_num' => 'numeric',

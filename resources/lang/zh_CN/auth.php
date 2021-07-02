@@ -69,4 +69,11 @@ return [
     'remember_me'     => '记住我',
     'request'         => '获 取',
     'tos'             => '用户条款',
+    'email_null'                 => '请输入邮箱账号',
+    'email_normal'               => '账号状态正常，无需激活',
+    'email_legitimate'           => '邮箱地址不合规',
+    'email_banned'               => '本站屏蔽了您使用的邮箱服务商，请使用其他有效邮箱',
+    'email_invalid'              => '使用邮箱不在本站支持邮箱列表内',
+    'email_exist'                => '账号已存在，请先登录',
+    'email_notExist'             => '账号不存在，请重试',
 ];

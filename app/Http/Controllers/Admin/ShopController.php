@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ShopStoreRequest;
 use App\Http\Requests\Admin\ShopUpdateRequest;
 use App\Models\Goods;
+use App\Models\GoodsCategory;
 use App\Models\Level;
 use Arr;
 use Exception;
@@ -23,7 +24,7 @@ class ShopController extends Controller
     // 商品列表
     public function index(Request $request)
     {
-        $query = Goods::query();
+        $query = Goods::query()->with(['category']);
 
         foreach (['type', 'status'] as $field) {
             $request->whenFilled($field, function ($value) use ($query, $field) {
@@ -37,7 +38,7 @@ class ShopController extends Controller
     // 添加商品页面
     public function create()
     {
-        return view('admin.shop.info', ['levels' => Level::orderBy('level')->get()]);
+        return view('admin.shop.info', ['levels' => Level::orderBy('level')->get(), 'categories' => GoodsCategory::all()]);
     }
 
     // 添加商品
@@ -48,6 +49,7 @@ class ShopController extends Controller
             $data['traffic'] *= $data['traffic_unit'];
             Arr::forget($data, 'traffic_unit');
         }
+
         $data['is_hot'] = array_key_exists('is_hot', $data) ? 1 : 0;
         $data['status'] = array_key_exists('status', $data) ? 1 : 0;
 
@@ -92,6 +94,7 @@ class ShopController extends Controller
         return view('admin.shop.info', [
             'good'   => $good,
             'levels' => Level::orderBy('level')->get(),
+            'categories' => GoodsCategory::all()
         ]);
     }
 

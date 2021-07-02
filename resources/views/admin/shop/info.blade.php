@@ -57,6 +57,16 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="level" class="col-md-2 col-form-label">分类</label>
+                                <div class="col-md-4">
+                                    <select data-plugin="selectpicker" data-style="btn-outline btn-primary" class="form-control" name="category_id" id="category_id">
+                                        @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="level" class="col-md-2 col-form-label">等级</label>
                                 <div class="col-md-4">
                                     <select data-plugin="selectpicker" data-style="btn-outline btn-primary" class="form-control" name="level" id="level">
@@ -195,6 +205,7 @@
             $('#name').val('{{$good->name}}');
             $('#price').val('{{$good->price}}');
             $('#level').selectpicker('val', '{{$good->level}}');
+            $('#category_id').selectpicker('val', '{{$good->category_id}}');
             @if ($good->type == 2)
             $('#renew').val('{{$good->renew}}');
             $('#period').val('{{$good->period}}');

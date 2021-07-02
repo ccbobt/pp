@@ -36,12 +36,12 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'sort' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
             return Response::json(['status' => 'fail', 'message' => $validator->errors()->all()]);
         }
-
         if ($category->update($validator->validated())) {
             return Response::json(['status' => 'success', 'message' => '操作成功']);
         }

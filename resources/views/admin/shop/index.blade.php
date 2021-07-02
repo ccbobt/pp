@@ -40,7 +40,7 @@
                         <th> #</th>
                         <th> 名称</th>
                         <th> 类型</th>
-                        <th> 图片</th>
+                        <th> 分类</th>
                         <th> 内含流量</th>
                         <th> 售价</th>
                         <th> 排序</th>
@@ -64,13 +64,7 @@
                                     充值
                                 @endif
                             </td>
-                            <td>
-                                @if($goods->logo)
-                                    <a href="{{asset($goods->logo)}}" target="_blank">
-                                        <img src="{{asset($goods->logo)}}" class="h-50" alt="logo"/>
-                                    </a>
-                                @endif
-                            </td>
+                            <td> {{ $goods->category ? $goods->category->name : ''}} </td>
                             <td> {{$goods->traffic_label}} </td>
                             <td> {{$goods->price}}元</td>
                             <td> {{$goods->sort}} </td>
