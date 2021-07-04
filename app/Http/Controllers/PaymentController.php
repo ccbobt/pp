@@ -36,9 +36,10 @@ class PaymentController extends Controller
         self::getClient()->notify($request);
     }
 
-    public static function getClient()
+    public static function getClient($method = '')
     {
-        switch (self::$method) {
+        $method = self::$method ? self::$method : $method;
+        switch ($method) {
             case 'credit':
                 return new Local();
             case 'f2fpay':

@@ -13,4 +13,10 @@ Route::group(['namespace' => 'Api\V1'], function (RouteContract $api) {
     $api->post('checkEmail', 'UserController@checkEmail');
     // 提交订单
     $api->post('submitOrder', 'ShopController@submitOrder');
+    $api->group(['middleware' => 'auth:api'], function (RouteContract $api) {
+        // 获取订单详情
+        $api->get('order/info/{id}', 'OrderController@info');
+        // 获取支付地址
+        $api->get('order/pay/{id}', 'OrderController@pay');
+    });
 });
