@@ -22,7 +22,7 @@ class CreateGoodsCategoriesTable extends Migration
             $table->timestamps();
         });
         Schema::table('goods', function (Blueprint $table) {
-            $table->integer('category_id')->nullable()->comment('分类ID');
+            $table->integer('category_id')->default(1)->nullable()->comment('分类ID');
         });
         \App\Models\GoodsCategory::query()->create(['name' => '黄金套餐']);
         \App\Models\GoodsCategory::query()->create(['name' => '白金套餐']);

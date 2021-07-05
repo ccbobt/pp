@@ -8,13 +8,14 @@ use App\Http\Controllers\PaymentController;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Payment;
-use Illuminate\Support\Facades\Auth;
 
 class OrderController extends BaseController
 {
     public function info(Request $request, $id)
     {
         $order = Order::query()->with(['goods.category'])->find($id);
+        $order->created_at = date('Y-m-d H:i:s', strtotime($order->created_at));
+        $order->updated_at = date('Y-m-d H:i:s', strtotime($order->updated_at));
 
         return $this->sendJson($order);
     }

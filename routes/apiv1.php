@@ -18,5 +18,7 @@ Route::group(['namespace' => 'Api\V1'], function (RouteContract $api) {
         $api->get('order/info/{id}', 'OrderController@info');
         // 获取支付地址
         $api->get('order/pay/{id}', 'OrderController@pay');
+        // 获取服务
+        $api->get('user/service', 'UserController@getService');
     });
 });

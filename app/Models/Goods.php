@@ -15,6 +15,7 @@ class Goods extends Model
     protected $table = 'goods';
     protected $dates = ['deleted_at'];
     protected $guarded = [];
+    protected $appends = ['traffic_label'];
 
     public function scopeType($query, $type)
     {
