@@ -18,7 +18,16 @@ Route::group(['namespace' => 'Api\V1'], function (RouteContract $api) {
         $api->get('order/info/{id}', 'OrderController@info');
         // 获取支付地址
         $api->get('order/pay/{id}', 'OrderController@pay');
-        // 获取服务
-        $api->get('user/service', 'UserController@getService');
+        // 用户相关信息
+        $api->group(['prefix' => 'user'], function (RouteContract $api) {
+            // 获取服务
+            $api->get('service', 'UserController@getService');
+            // 获取用户信息
+            $api->get('info', 'UserController@getInfo');
+            // 查看账单列表
+            $api->get('invoices', 'UserController@invoices');
+            // 重置登录密码
+            $api->post('reset/password', 'UserController@resetPassword');
+        });
     });
 });

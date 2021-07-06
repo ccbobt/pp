@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 
 
 use App\Models\Goods;
-use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends BaseController
@@ -60,5 +60,60 @@ class UserController extends BaseController
             'aff_url' => sysConfig('website_url') . '/?aff=' . $user->invite_code,
             'aff_text' => $aff_text,
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return UserController|\Illuminate\Http\JsonResponse
+     */
+    public function getInfo(Request $request)
+    {
+        $user = $request->user();
+
+        return $this->sendJson($user);
+    }
+
+    /**
+     * @param Request $request
+     * @return UserController|\Illuminate\Http\JsonResponse
+     */
+    public function resetPassword(Request $request)
+    {
+        $user = $request->user();
+        $old_password = $request->input('password');
+        $new_password = $request->input('new_password');
+        $new_password2 = $request->input('new_password2');
+        if (! Hash::check($old_password, $user->password)) {
+            return $this->sendError(trans('auth.password.reset.error.wrong'));
+        }
+        if (Hash::check($new_password, $user->password)) {
+            return $this->sendError(trans('auth.password.reset.error.same'));
+        }
+        if (strlen($new_password) < 6) {
+            return $this->sendError(trans('auth.password.reset.error.length'));
+        }
+        if ($new_password != $new_password2) {
+            return $this->sendError(trans('auth.password.reset.error.new_same'));
+        }
+        $user->update(['password' => $new_password]);
+
+        return $this->sendSuccess('修改成功');
+    }
+
+
+    /**
+     * 账单列表
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function invoices(Request $request)
+    {
+        $user = $request->user();
+        $pageSize = (int)$request->get('pageSize', 10);
+
+        $data = $user->orders()->with(['goods', 'payment'])->orderByDesc('id')->paginate($pageSize);
+
+        return $this->sendJson($data);
     }
 }

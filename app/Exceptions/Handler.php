@@ -129,6 +129,9 @@ class Handler extends ExceptionHandler
                     return Response::view('auth.error', ['message' => $exception->getMessage()], 408);
             }
         }
+        if ($exception instanceof \App\Exceptions\BobException)  {
+            return $exception->render($request);
+        }
 
         return parent::render($request, $exception);
     }

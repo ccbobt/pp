@@ -2,21 +2,26 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\BobException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Illuminate\Http\Request;
 
 class Authenticate extends Middleware
 {
     /**
      * Handle an unauthenticated user.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param array $guards
-     * @return \Illuminate\Http\JsonResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $guards
+     * @return void
      *
+     * @throws \App\Exceptions\BobException
      */
     protected function unauthenticated($request, array $guards)
     {
-        return response()->json(['code' => -1, 'msg' => '登陆过期，请重新登陆~'])->setStatusCode(401);
+        throw new BobException(
+            '登陆过期，请重新登陆~',
+            -1,
+            401
+        );
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Auth;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -15,6 +16,8 @@ class Order extends Model
     protected $table = 'order';
     protected $dates = ['expired_at'];
     protected $guarded = [];
+
+    protected $appends = ['status_label'];
 
     public function user(): BelongsTo
     {
@@ -176,5 +179,10 @@ class Order extends Model
     public function getPayWayLabelAttribute(): string
     {
         return config('common.payment.labels')[$this->attributes['pay_way']] ?? '未知';
+    }
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format($this->dateFormat ?: 'Y-m-d H:i:s');
     }
 }

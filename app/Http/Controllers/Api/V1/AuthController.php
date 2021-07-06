@@ -27,12 +27,12 @@ class AuthController extends BaseController
             return $this->sendError($validator->errors());
         }
 
-        if ($token = auth()->attempt($validator->validated())) {
+        if ($token = auth('api')->attempt($validator->validated())) {
             return $this->sendJson([
                 'access_token' => $token,
                 'token_type' => 'bearer',
-                'expires_in' => auth()->factory()->getTTL() * 60,
-                'user' => auth()->user()->profile(),
+                'expires_in' => auth('api')->factory()->getTTL() * 60,
+                'user' => auth('api')->user()->profile(),
             ]);
         }
 
