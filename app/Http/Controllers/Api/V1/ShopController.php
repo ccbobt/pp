@@ -109,6 +109,7 @@ class ShopController extends BaseController
         $coupon_sn = (string)$request->post('couponCode');
         $method = (string)$request->post('method');
         $user = auth('api')->user();
+        $is_new = $user ? false : true;
         $goods = Goods::find($goods_id);
         $token = '';
         if (!$user) {
@@ -133,7 +134,7 @@ class ShopController extends BaseController
             // 创建新用户
             $user = Helpers::addUser($email, $password, $transfer_enable, sysConfig('default_days'), $inviter_id, $email);
             // 注册失败，抛出异常
-            if (!$user) {
+            if (! $user) {
                 return $this->sendError(trans('auth.register.failed'));
             }
             // 更新邀请码
@@ -165,6 +166,9 @@ class ShopController extends BaseController
             $token = auth('api')->attempt($request->only('email', 'password'));
         }
         if (!$goods || !$goods->status) {
+            if ($is_new){
+                $user->delete();
+            }
             return $this->sendError('订单创建失败：商品已下架');
         }
         $amount = $goods->price;
@@ -172,12 +176,18 @@ class ShopController extends BaseController
         $activePlan = Order::userActivePlan()->doesntExist();
         //　无生效套餐，禁止购买加油包
         if ($goods->type === 1 && $activePlan) {
+            if ($is_new){
+                $user->delete();
+            }
             return $this->sendError('购买加油包前，请先购买套餐');
         }
         // 单个商品限购
         if ($goods->limit_num) {
             $count = Order::uid()->where('status', '>=', 0)->whereGoodsId($goods_id)->count();
             if ($count >= $goods->limit_num) {
+                if ($is_new){
+                    $user->delete();
+                }
                 return $this->sendError('此商品限购' . $goods->limit_num . '次，您已购买' . $count . '次');
             }
         }
@@ -196,23 +206,35 @@ class ShopController extends BaseController
         if ($method !== 'credit') {
             // 判断是否开启在线支付
             if (!sysConfig('is_onlinePay')) {
+                if ($is_new){
+                    $user->delete();
+                }
                 return $this->sendError('订单创建失败：系统并未开启在线支付功能');
             }
 
             // 判断是否存在同个商品的未支付订单
             if (Order::uid()->whereStatus(0)->exists()) {
+                if ($is_new){
+                    $user->delete();
+                }
                 return $this->sendError('订单创建失败：尚有未支付的订单，请先去支付');
             }
-        } elseif (Auth::getUser()->credit < $amount) { // 验证账号余额是否充足
+        } elseif ($user->credit < $amount) { // 验证账号余额是否充足
             return $this->sendError('您的余额不足，请先充值');
         }
 
         // 价格异常判断
         if ($amount < 0) {
+            if ($is_new){
+                $user->delete();
+            }
             return $this->sendError('订单创建失败：订单总价异常');
         }
 
         if ($amount === 0 && $method !== 'credit') {
+            if ($is_new){
+                $user->delete();
+            }
             return $this->sendError('订单创建失败：订单总价为0，无需使用在线支付');
         }
 
@@ -225,6 +247,7 @@ class ShopController extends BaseController
                 'coupon_id' => $coupon->id ?? null,
                 'origin_amount' => $goods->price ?? 0,
                 'amount' => $amount,
+                'status' => 0,
                 'pay_type' => $pay_type,
                 'pay_way' => $method,
             ]);
@@ -242,9 +265,15 @@ class ShopController extends BaseController
 
             return $this->sendJson($newOrder);
         } catch (\Exception $e) {
+            if ($is_new){
+                $user->delete();
+            }
             Log::error('订单生成错误：' . $e->getMessage());
         }
 
+        if ($is_new){
+            $user->delete();
+        }
         return $this->sendError('订单创建失败');
     }
 

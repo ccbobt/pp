@@ -13,6 +13,7 @@ Route::group(['namespace' => 'Api\V1'], function (RouteContract $api) {
     $api->post('checkEmail', 'UserController@checkEmail');
     // 提交订单
     $api->post('submitOrder', 'ShopController@submitOrder');
+    // API中间件
     $api->group(['middleware' => 'auth:api'], function (RouteContract $api) {
         // 获取订单详情
         $api->get('order/info/{id}', 'OrderController@info');
@@ -28,6 +29,10 @@ Route::group(['namespace' => 'Api\V1'], function (RouteContract $api) {
             $api->get('invoices', 'UserController@invoices');
             // 重置登录密码
             $api->post('reset/password', 'UserController@resetPassword');
+            // 激活预支付
+            $api->post('active/prepaid', 'UserController@closePlan');
+            // 重置订阅
+            $api->post('reset/subscribe', 'UserController@resetSubscribe');
         });
     });
 });

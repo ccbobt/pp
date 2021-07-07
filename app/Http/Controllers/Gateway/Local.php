@@ -25,7 +25,7 @@ class Local extends AbstractPayment
 
         $order->complete();
 
-        return Response::json(['status' => 'success', 'message' => '购买完成!']);
+        return Response::json(['status' => 'success', 'message' => '购买完成!', 'url' => '']);
     }
 
     public function notify(Request $request): void

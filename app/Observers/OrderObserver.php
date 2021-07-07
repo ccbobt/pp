@@ -40,7 +40,6 @@ class OrderObserver
 
             // 检查该订单对应用户是否有预支付套餐
             $prepaidOrder = Order::userPrepay($order->user_id)->oldest()->first();
-
             if ($prepaidOrder) {
                 (new OrderService($prepaidOrder))->activatePrepaidPlan();
             }

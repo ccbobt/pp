@@ -4,10 +4,16 @@
 namespace App\Http\Controllers\Api\V1;
 
 
+use App\Components\Helpers;
 use App\Models\Goods;
+use App\Models\Order;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class UserController extends BaseController
 {
@@ -112,8 +118,59 @@ class UserController extends BaseController
         $user = $request->user();
         $pageSize = (int)$request->get('pageSize', 10);
 
-        $data = $user->orders()->with(['goods', 'payment'])->orderByDesc('id')->paginate($pageSize);
+        $data['orderList'] = $user->orders()->with(['goods', 'payment'])->orderByDesc('id')->paginate($pageSize);
+        $data['prepaidPlan'] = Order::userPrepay()->exists();
 
         return $this->sendJson($data);
+    }
+
+    /**
+     * @param Request $request
+     * @return UserController|JsonResponse
+     */
+    public function closePlan(Request $request)
+    {
+        $user = $request->user('api');
+        $activePlan = Order::userActivePlan($user->id)->first();
+        $activePlan->is_expire = 1;
+        if ($activePlan->save()) {
+            // 关闭先前套餐后，新套餐自动运行
+            if (Order::userActivePlan($user->id)->exists()) {
+                return $this->sendSuccess(trans('common.active_item', ['attribute' => trans('common.success')]));
+            }
+
+            return $this->sendSuccess(trans('common.close'));
+        }
+
+        return $this->sendError(trans('common.close_item', ['attribute' => trans('common.failed')]));
+    }
+
+    /**
+     * 更换订阅地址
+     *
+     * @param Request $request
+     * @return JsonResponse|null
+     */
+    public function resetSubscribe(Request $request): ?JsonResponse
+    {
+        try {
+            DB::beginTransaction();
+
+            // 更换订阅码
+            $request->user()->subscribe->update(['code' => Helpers::makeSubscribeCode()]);
+
+            // 更换连接信息
+            $request->user()->update(['passwd' => Str::random(), 'vmess_id' => Str::uuid()]);
+
+            DB::commit();
+
+            return $this->sendSuccess(trans('common.replace').trans('common.success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error(trans('user.subscribe.error').'：'.$e->getMessage());
+
+            return $this->sendError(trans('common.replace').trans('common.failed').$e->getMessage());
+        }
     }
 }

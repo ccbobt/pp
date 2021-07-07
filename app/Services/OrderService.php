@@ -38,7 +38,6 @@ class OrderService
                 return $this->chargeCredit();
             }
         }
-
         $goods = self::$order->goods;
         switch ($goods->type) {// 商品为流量或者套餐
             case 1:// 流量包
