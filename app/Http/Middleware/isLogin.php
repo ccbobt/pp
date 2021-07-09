@@ -23,7 +23,7 @@ class isLogin
                 return Redirect::route('admin.login');
             }
 
-//            return Redirect::route('login');
+           // return Redirect::route('login');
         }
 
         return $next($request);

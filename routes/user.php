@@ -3,7 +3,7 @@
 //Route::get('/', 'UserController@index')->name('home'); // 用户首页
 Route::get('/', function (){
     return  view('index');
-});
+})->name('home');
 // 用户首页
 Route::get('article/{article}', 'UserController@article')->name('article'); // 文章详情
 Route::post('exchangeSubscribe', 'UserController@exchangeSubscribe')->name('changeSub'); // 更换节点订阅地址
