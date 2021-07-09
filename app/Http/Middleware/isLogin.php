@@ -18,13 +18,13 @@ class isLogin
      */
     public function handle(Request $request, Closure $next)
     {
-//        if (auth()->guest()) {
-//            if ($request->routeIs('admin.*')) {
-//                return Redirect::route('admin.login');
-//            }
-//
+        if (auth()->guest()) {
+            if ($request->routeIs('admin.*')) {
+                return Redirect::route('admin.login');
+            }
+
 //            return Redirect::route('login');
-//        }
+        }
 
         return $next($request);
     }
