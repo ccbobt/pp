@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 180 180">
+    <defs>
+        <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#3963ef" stop-opacity="0.2"/>
+            <stop offset="1" stop-color="#3963ef" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#edf0fc"/>
+            <stop offset="1" stop-color="#fcfdff"/>
+        </linearGradient>
+        <linearGradient id="linear-gradient-3" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#5f8aff"/>
+            <stop offset="1" stop-color="#5f8aff" stop-opacity="0.502"/>
+        </linearGradient>
+    </defs>
+    <g id="Group_4197" data-name="Group 4197" transform="translate(-40 -667)">
+        <rect id="Rectangle_2772" data-name="Rectangle 2772" width="180" height="180" rx="12" transform="translate(40 667)" fill="#c9d0e5" opacity="0"/>
+        <g id="Group_4196" data-name="Group 4196" transform="translate(1)">
+            <g id="Group_4195" data-name="Group 4195" transform="translate(14858 -9537.19)">
+                <path id="Path_4481" data-name="Path 4481" d="M2418.448,1908.521c12.536-9.882,30.416-18.918,51.054-24.818,46.826-13.386,90.124-5.564,96.71,17.472,2.777,9.717-1.421,20.589-11.093,31.324" transform="translate(-17211.795 8359.244)" fill="url(#linear-gradient)"/>
+                <path id="Path_4480" data-name="Path 4480" d="M2418.448,1908.521c12.536-9.882,30.416-18.918,51.054-24.818,46.826-13.386,90.124-5.564,96.71,17.472,2.777,9.717-1.421,20.589-11.093,31.324" transform="translate(-17211.795 8359.244)" fill="none" stroke="#3963ef" stroke-linecap="round" stroke-width="2"/>
+                <g id="Rectangle_2819" data-name="Rectangle 2819" transform="translate(-14771 10221.19)" stroke="#3963ef" stroke-width="2" fill="url(#linear-gradient-2)">
+                    <rect width="81" height="134" rx="11" stroke="none"/>
+                    <rect x="1" y="1" width="79" height="132" rx="10" fill="none"/>
+                </g>
+                <circle id="Ellipse_514" data-name="Ellipse 514" cx="5" cy="5" r="5" transform="translate(-14811 10317.19)" fill="#3963ef"/>
+                <circle id="Ellipse_516" data-name="Ellipse 516" cx="21" cy="21" r="21" transform="translate(-14751 10243.19)" fill="#adb5f0" opacity="0.15"/>
+                <circle id="Ellipse_517" data-name="Ellipse 517" cx="14.5" cy="14.5" r="14.5" transform="translate(-14745 10250.19)" opacity="0.8" fill="url(#linear-gradient-3)"/>
+                <rect id="Rectangle_2820" data-name="Rectangle 2820" width="60" height="32" rx="5" transform="translate(-14760 10299.19)" fill="#aeb6ef" opacity="0.16"/>
+                <circle id="Ellipse_518" data-name="Ellipse 518" cx="26" cy="26" r="26" transform="translate(-14715 10320.19)" fill="#fff" stroke="#fff" stroke-width="5"/>
+                <g id="Ellipse_515" data-name="Ellipse 515" transform="translate(-14713 10322.19)" stroke="#3963ef" stroke-width="2" fill="url(#linear-gradient-3)">
+                    <circle cx="24" cy="24" r="24" stroke="none"/>
+                    <circle cx="24" cy="24" r="23" fill="none"/>
+                </g>
+                <path id="Path_4479" data-name="Path 4479" d="M2530.972,1969.077c-12.96,11.359-32.383,21.693-55.167,28.207-46.826,13.386-90.125,5.563-96.709-17.472-3.159-11.05,2.7-23.592,15.02-35.314" transform="translate(-17194.25 8329.082)" fill="none" stroke="#3963ef" stroke-linecap="round" stroke-width="2" stroke-dasharray="1.5 8"/>
+            </g>
+            <path id="Path_4482" data-name="Path 4482" d="M2353.256,1204.174a2,2,0,0,0,1.3.555,1.679,1.679,0,0,0,1.295-.555l6.444-6.443a1.82,1.82,0,1,0-2.574-2.574l-3.331,3.314v-14.866a1.854,1.854,0,0,0-1.851-1.85,1.749,1.749,0,0,0-1.851,1.85v15.051l-3.482-3.516a1.82,1.82,0,0,0-2.574,2.574Zm0,0" transform="translate(-2185.271 -385.551)" fill="#120b78"/>
+            <path id="联合_1" data-name="联合 1" d="M995.785,540.312a.883.883,0,0,1-1.249-.007l-3.229-3.209a.875.875,0,1,1,1.233-1.242l2.6,2.581,5.517-5.55a.891.891,0,0,1,1.264,1.256Z" transform="translate(-869.041 191.37)" fill="#f2f3f9"/>
+        </g>
+    </g>
+</svg>

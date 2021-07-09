@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="联合_121" data-name="联合 121" d="M21.063,22.232V3.315H0V0H24.3V22.232Z" fill="#5f84a8"/>
+    </clipPath>
+  </defs>
+  <g id="组_3842" data-name="组 3842" transform="translate(-87 -864)">
+    <rect id="矩形_2552" data-name="矩形 2552" width="40" height="40" transform="translate(87 864)" fill="#746161" opacity="0"/>
+    <g id="组_3717" data-name="组 3717" transform="translate(94.8 871.517)">
+      <g id="矩形_2544" data-name="矩形 2544" transform="translate(1.62 4.862)" fill="#fff" stroke="#3963ef" stroke-width="2.4">
+        <rect width="17.823" height="20.612" rx="3" stroke="none"/>
+        <rect x="1.2" y="1.2" width="15.423" height="18.212" rx="1.8" fill="none"/>
+      </g>
+      <g id="蒙版组_2" data-name="蒙版组 2" transform="translate(0 0.001)" clip-path="url(#clip-path)">
+        <g id="矩形_2545" data-name="矩形 2545" transform="translate(6.481 0)" fill="none" stroke="#3963ef" stroke-width="2.4">
+          <rect width="17.823" height="19.576" rx="3" stroke="none"/>
+          <rect x="1.2" y="1.2" width="15.423" height="17.176" rx="1.8" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

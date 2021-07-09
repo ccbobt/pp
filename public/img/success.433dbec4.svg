@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g id="Group" transform="translate(0 0.055)">
+    <g id="Oval_3" data-name="Oval 3" transform="translate(0 -0.055)" fill="none" stroke="#44b496" stroke-miterlimit="10" stroke-width="3">
+      <circle cx="24" cy="24" r="24" stroke="none"/>
+      <circle cx="24" cy="24" r="22.5" fill="none"/>
+    </g>
+    <path id="Combined_Shape" data-name="Combined Shape" d="M0,12.563V0H2.792V9.772H22.335v2.792Z" transform="translate(11.167 23.497) rotate(-45)" fill="#44b496"/>
+  </g>
+</svg>

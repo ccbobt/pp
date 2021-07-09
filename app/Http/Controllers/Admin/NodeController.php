@@ -53,8 +53,7 @@ class NodeController extends Controller
             'countries'  => Country::orderBy('code')->get(),
             'levels'     => Level::orderBy('level')->get(),
             'ruleGroups' => RuleGroup::orderBy('id')->get(),
-            'labels'     => Label::orderByDesc('sort')->orderBy('id')->get(),
-            'certs'      => NodeCertificate::orderBy('id')->get(),
+            'labels'     => Label::orderByDesc('sort')->orderBy('id')->get()
         ]);
     }
 

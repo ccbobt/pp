@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="iOS" transform="translate(-728 -976)">
+    <rect id="矩形_2246" data-name="矩形 2246" width="24" height="24" transform="translate(728 976)" fill="#cdd3e3" opacity="0"/>
+    <g id="组_2503" data-name="组 2503" transform="translate(731.363 976)">
+      <g id="组_2502" data-name="组 2502">
+        <rect id="矩形_2116" data-name="矩形 2116" width="17" height="24" rx="2.5" transform="translate(-0.363)" fill="#3963ef"/>
+        <circle id="椭圆_332" data-name="椭圆 332" cx="1.261" cy="1.261" r="1.261" transform="translate(6.886 19.5)" fill="#fff"/>
+        <rect id="矩形_2117" data-name="矩形 2117" width="5" height="1" rx="0.5" transform="translate(5.637 3)" fill="#fff"/>
+      </g>
+      <line id="直线_217" data-name="直线 217" x2="17" transform="translate(-0.363 17)" fill="none" stroke="#fff" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

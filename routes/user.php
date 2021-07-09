@@ -1,6 +1,10 @@
 <?php
 
-Route::get('/', 'UserController@index')->name('home'); // 用户首页
+//Route::get('/', 'UserController@index')->name('home'); // 用户首页
+Route::get('/', function (){
+    return  view('index');
+});
+// 用户首页
 Route::get('article/{article}', 'UserController@article')->name('article'); // 文章详情
 Route::post('exchangeSubscribe', 'UserController@exchangeSubscribe')->name('changeSub'); // 更换节点订阅地址
 Route::match(['get', 'post'], 'nodeList', 'UserController@nodeList')->name('node'); // 节点列表
@@ -15,7 +19,7 @@ Route::post('closePlan', 'UserController@closePlan')->name('cancelPlan'); // 激
 Route::get('invoice/{sn}', 'UserController@invoiceDetail')->name('invoiceInfo'); // 订单明细
 Route::post('resetUserTraffic', 'UserController@resetUserTraffic')->name('resetTraffic'); // 重置用户流量
 Route::get('buy/{good}', 'UserController@buy')->name('buy'); // 购买商品
-Route::post('redeemCoupon', 'UserController@redeemCoupon')->name('redeemCoupon'); // 使用优惠券
+Route::post('redeemCoupon', 'UserController@redeem  Coupon')->name('redeemCoupon'); // 使用优惠券
 Route::get('invite', 'UserController@invite')->name('invite'); // 邀请码
 Route::post('makeInvite', 'UserController@makeInvite')->name('createInvite'); // 生成邀请码
 Route::match(['get', 'post'], 'profile', 'UserController@profile')->name('profile'); // 修改个人信息

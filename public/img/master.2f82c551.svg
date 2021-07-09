@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50.242" height="36" viewBox="0 0 50.242 36">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Clip_2" data-name="Clip 2" d="M0,0H50.242V36H0Z" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="万事达-信用卡" transform="translate(0)">
+    <g id="Group_3" data-name="Group 3">
+      <path id="Clip_2-2" data-name="Clip 2" d="M0,0H50.242V36H0Z" fill="none"/>
+      <g id="Group_3-2" data-name="Group 3" clip-path="url(#clip-path)">
+        <path id="Fill_1" data-name="Fill 1" d="M45.809,36H4.433A4.479,4.479,0,0,1,0,31.5V4.5A4.48,4.48,0,0,1,4.433,0H45.809a4.48,4.48,0,0,1,4.433,4.5v27A4.479,4.479,0,0,1,45.809,36" transform="translate(0 0)" fill="#33326f"/>
+      </g>
+    </g>
+    <path id="Fill_4" data-name="Fill 4" d="M19.44,9.866a9.8,9.8,0,0,1-9.72,9.868A9.8,9.8,0,0,1,0,9.866,9.794,9.794,0,0,1,9.72,0a9.794,9.794,0,0,1,9.72,9.866" transform="translate(21.419 8.133)" fill="#ffa42c"/>
+    <path id="Fill_6" data-name="Fill 6" d="M19.44,9.866a9.8,9.8,0,0,1-9.72,9.868A9.8,9.8,0,0,1,0,9.866,9.794,9.794,0,0,1,9.72,0a9.794,9.794,0,0,1,9.72,9.866" transform="translate(9.384 8.133)" fill="#f42a39"/>
+    <path id="Fill_8" data-name="Fill 8" d="M0,7.748A9.9,9.9,0,0,0,3.7,15.5a9.9,9.9,0,0,0,3.7-7.748A9.906,9.906,0,0,0,3.7,0,9.906,9.906,0,0,0,0,7.748" transform="translate(21.418 10.251)" fill="#f9582d"/>
+  </g>
+</svg>
